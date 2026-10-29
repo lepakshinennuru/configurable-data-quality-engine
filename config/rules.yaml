@@ -1,0 +1,72 @@
+
+datasets:
+  customers:
+    primary_key: customer_id
+    required_columns:
+      - customer_id
+      - customer_name
+      - email
+      - created_at
+
+  orders:
+    primary_key: order_id
+    required_columns:
+      - order_id
+      - customer_id
+      - order_amount
+      - order_status
+      - order_timestamp
+
+rules:
+  - rule_id: CUST001
+    dataset: customers
+    type: completeness
+    column: customer_id
+    severity: CRITICAL
+
+  - rule_id: CUST002
+    dataset: customers
+    type: uniqueness
+    column: customer_id
+    severity: CRITICAL
+
+  - rule_id: ORD001
+    dataset: orders
+    type: completeness
+    column: customer_id
+    severity: HIGH
+
+  - rule_id: ORD002
+    dataset: orders
+    type: uniqueness
+    column: order_id
+    severity: CRITICAL
+
+  - rule_id: ORD003
+    dataset: orders
+    type: referential_integrity
+    column: customer_id
+    reference_dataset: customers
+    reference_column: customer_id
+    severity: HIGH
+
+  - rule_id: ORD004
+    dataset: orders
+    type: range
+    column: order_amount
+    min: 0
+    max: 100000
+    severity: HIGH
+
+  - rule_id: ORD005
+    dataset: orders
+    type: freshness
+    column: order_timestamp
+    max_age_hours: 24
+    severity: MEDIUM
+
+  - rule_id: ORD006
+    dataset: orders
+    type: custom
+    name: completed_order_positive_amount
+    severity: HIGH
