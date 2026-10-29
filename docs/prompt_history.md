@@ -42,3 +42,24 @@ This file is a categorized summary, not a complete verbatim record of every AI p
 ## Ownership and Disclosure
 
 AI assistance was used during development. I am responsible for reviewing the submitted implementation, understanding its design decisions and limitations, and verifying its behavior.
+
+## Additional Prompt Log and Development Record
+
+The categories above summarize the main areas where AI assistance was used. They are not presented as exact quotations of the original prompts.
+
+During development, AI assistance covered the following activities:
+
+1. Understanding the assignment requirements and converting them into implementation tasks.
+2. Designing the Python project structure and selecting suitable libraries.
+3. Implementing YAML-based validation rules and their evaluation logic.
+4. Building the data ingestion, validation, publishing, quarantine, and reconciliation workflow.
+5. Recording pipeline runs, rule results, and row-level issues in SQLite.
+6. Generating synthetic customer and order datasets with configurable row counts and seeds.
+7. Writing and running automated tests and resolving implementation issues.
+8. Measuring execution performance and reviewing scalability considerations.
+9. Improving the README, data dictionary, sample outputs, and repository organization.
+10. Reviewing implementation limitations and preparing the final submission.
+
+**Transcript completeness:** This record must not be treated as a verbatim or exhaustive prompt transcript. Before submission, I will compare it with the available original AI conversation history and include the original prompts where they can be recovered. Any unavailable prompts will not be invented or represented as exact quotations.
+
+**Verification:** I ran the implementation and automated tests locally and reviewed the resulting outputs. These checks reflect my own verification of the submitted project, not a guarantee that every possible edge case has been covered.
