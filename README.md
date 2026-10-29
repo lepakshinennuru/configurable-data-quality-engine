@@ -207,3 +207,19 @@ CSV files are replaced individually; publishing all output files and database up
 ## Conclusion
 
 The Configurable Data Quality Engine demonstrates a configurable, testable, and modular approach to data validation. It combines rule-based checks, record quarantine, reconciliation, SQLite persistence, CSV publishing, and performance measurement in a single Python pipeline.
+
+## Supporting Documentation and Sample Results
+
+- [Data Dictionary](docs/data_dictionary.md): Documents dataset fields, keys, relationships, and assumptions.
+- [AI Prompt History](docs/prompt_history.md): Describes AI assistance used during development. This record should be completed with the original prompts available from the development history.
+- [Rule Results Sample](docs/sample_outputs/rule_results.csv): Example validation outcomes.
+- [Row Issues Sample](docs/sample_outputs/row_issues.csv): Example row-level validation failures.
+- [Reconciliation Sample](docs/sample_outputs/reconciliation.csv): Example input, clean, and quarantined record counts.
+
+## Important Limitations
+
+- Publishing multiple output files and updating SQLite are not one atomic transaction.
+- The current freshness rule can quarantine older records; the threshold and timestamp behavior are configuration-dependent.
+- Sample output files represent a particular execution and may not match a later run.
+- Performance results are local measurements, not production-scale guarantees.
+
