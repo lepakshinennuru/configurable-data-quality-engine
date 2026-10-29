@@ -35,15 +35,40 @@ def test_engine_runs_all_configured_rules():
     assert DATABASE_PATH.exists()
 
 
-def test_reconciliation_balances_input_records():
-    reconciliation_path = (
-        DATABASE_PATH.parent / "reconciliation.csv"
+
+def test_reconciliation_balances_input_records(
+    tmp_path,
+    monkeypatch,
+    isolated_database,
+):
+    from src import engine, publisher
+
+    test_output = tmp_path / "output"
+    test_output.mkdir()
+
+    # Isolate generated files from your real project outputs.
+    monkeypatch.setattr(engine, "OUTPUT_DIR", test_output)
+    monkeypatch.setattr(publisher, "OUTPUT_DIR", test_output)
+    monkeypatch.setattr(
+        publisher,
+        "CLEAN_DIR",
+        test_output / "clean",
     )
+    monkeypatch.setattr(
+        publisher,
+        "QUARANTINE_DIR",
+        test_output / "quarantine",
+    )
+
+    run_engine()
+
+    reconciliation_path = test_output / "reconciliation.csv"
 
     assert reconciliation_path.exists()
 
     reconciliation = pd.read_csv(reconciliation_path)
 
+    assert not reconciliation.empty
     assert reconciliation["reconciled"].all()
 
     assert (
