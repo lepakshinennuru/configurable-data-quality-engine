@@ -113,6 +113,8 @@ python -m src.generator --rows 10000 --seed 42
 
 The generator creates customer and order CSV files in `data/input/`.
 
+**Reproducibility note:** The generator accepts a configurable random seed for synthetic data generation. However, generated timestamps depend on the current system time, so repeated executions on different days may produce different timestamp values. The freshness rule uses a 24-hour threshold.
+
 ## Run the Engine
 
 Execute the complete data quality pipeline:
